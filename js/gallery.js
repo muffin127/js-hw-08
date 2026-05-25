@@ -72,15 +72,17 @@ let currentIndex = 0;
 
 function imageTemplate({ preview, original, description }, index) {
   return `
-    <a href="${original}" class="image-link">
-      <img
-        class="image-item"
-        src="${preview}"
-        data-source="${original}"
-        data-index="${index}"
-        alt="${description}"
-      />
-    </a>
+    <li class="gallery-item">
+      <a href="${original}" class="image-link">
+        <img
+          class="image-item"
+          src="${preview}"
+          data-source="${original}"
+          data-index="${index}"
+          alt="${description}"
+        />
+      </a>
+    </li>
   `;
 }
 
@@ -153,9 +155,11 @@ function prevImage() {
 // UPDATE MODAL
 
 function updateModal() {
-  const { original } = images[currentIndex];
+  if (modal) {
+    modal.close();
+  }
 
-  modal.close();
+  const { original } = images[currentIndex];
 
   modal = basicLightbox.create(`
     <div class="modal">
@@ -169,6 +173,8 @@ function updateModal() {
 // CLOSE MODAL
 
 function closeModal() {
+  if (!modal) return;
+
   modal.close();
   document.removeEventListener('keydown', onKeyPress);
 }

@@ -2,20 +2,20 @@ body {
   margin: 0;
   padding: 0;
   background-color: #fff;
-  textdecoration: none;
 }
 
 .gallery {
+  list-style: none;
+  margin: 0;
+  padding: 24px 156px;
+
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  padding: 24px 156px;
 }
 
-.gallery a {
+.gallery-item {
   display: block;
-  overflow: hidden;
-  border-radius: 2px;
 }
 
 .gallery img {
